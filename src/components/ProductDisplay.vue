@@ -100,7 +100,7 @@ const removeItemFromCart = () => {
   emit('remove-from-cart');
 };
 
-const addReviews = (newReview) => {
+const addReview = (newReview) => {
   reviews.value.push(newReview);
 };
 </script>
