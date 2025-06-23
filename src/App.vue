@@ -21,6 +21,13 @@ const inventory = ref(100);
 
 // Third Challenge - Create an `onSale` boolean `ref`. Use that to conditionally render a p tag that says: "On Sale" whenever `onSale` is `true`.
 const onSale = ref(false);
+
+// Fourth Lesson: displaying lists with `v-for`
+const details = ref(['50% cotton', '30% wool', '20% polyester']);
+const variants = ref([
+  { id: 2234, color: 'green' },
+  { id: 2235, color: 'blue' },
+]);
 </script>
 
 <template>
@@ -48,6 +55,14 @@ const onSale = ref(false);
 
         <!-- Second Challenge -->
         <a :href="url" target="_blank">Checkout Vue.js</a>
+
+        <!-- Fourth Lesson: Lists with `v-for` -->
+        <ul>
+          <li v-for="detail in details">{{ detail }}</li>
+        </ul>
+        <div v-for="variant in variants" :key="variant.id">
+          {{ variant.color }}
+        </div>
       </div>
     </div>
   </div>
