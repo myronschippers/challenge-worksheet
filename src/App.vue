@@ -53,6 +53,10 @@ const removeItemFromCart = () => {
   cart.value -= 1;
   inventory.value += 1;
 };
+
+// Sixth Lesson: dynamic classes and styling `:style` `:class`
+
+// Sixth Challenge - Bind the `out-of-stock-image` class to the image whenever `inStock` is `false`
 </script>
 
 <template>
@@ -63,7 +67,7 @@ const removeItemFromCart = () => {
   <div class="product-display">
     <div class="product-container">
       <div class="product-image">
-        <img v-bind:src="image" />
+        <img v-bind:src="image" :class="[!inStock ? 'out-of-stock-img' : '']" />
         <!-- Shorthand for `v-bind:` -->
         <!-- <img :src="image" /> -->
       </div>
