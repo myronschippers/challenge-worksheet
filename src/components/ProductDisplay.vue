@@ -3,6 +3,13 @@ import { ref, computed } from 'vue';
 import socksGreenImage from '@/assets/images/socks_green.jpeg';
 import socksBlueImage from '@/assets/images/socks_blue.jpeg';
 
+const props = defineProps({
+  premium: {
+    type: Boolean,
+    required: true,
+  },
+});
+
 const product = ref('Socks');
 const brand = ref('Vue Mastery');
 const description = ref(
@@ -52,6 +59,14 @@ const currentInventory = computed(() => {
   return variants.value[selectedVariant.value].quantity;
 });
 
+const shipping = computed(() => {
+  if (props.premium) {
+    return 'Free';
+  }
+
+  return 2.99;
+});
+
 // Fifth Lesson: interactions in the UI and dynamic events
 const addToCart = () => {
   // cart.value += 1;
@@ -97,6 +112,7 @@ const removeItemFromCart = () => {
         <p v-else>Out of Stock</p>
         <!-- Example of hiding element with `v-show` -->
         <!-- <p v-show="inStock">In Stock (show)</p> -->
+        <p>Shipping: {{ shipping }}</p>
 
         <!-- Third Challenge: On Sale conditional render -->
         <p v-if="onSale">On Sale</p>
