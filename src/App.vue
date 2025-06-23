@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import socksGreenImage from './assets/images/socks_green.jpeg';
 import socksBlueImage from './assets/images/socks_blue.jpeg';
 
@@ -16,9 +16,10 @@ const image = ref(socksGreenImage);
 const url = ref('https://vuejs.org/guide/quick-start');
 
 // Conditional Rendering
-// const inStock = ref(true);
 // now in stock messaging is based on inventory count
 const inventory = ref(100);
+// changing inStock boolean to be based on the inventory count
+const inStock = computed(() => inventory.value > 0);
 
 // Third Challenge - Create an `onSale` boolean `ref`. Use that to conditionally render a p tag that says: "On Sale" whenever `onSale` is `true`.
 const onSale = ref(false);
@@ -35,7 +36,10 @@ const sizes = ref(['sm', 'md', 'lg', 'xl']);
 
 // Fifth Lesson: interactions in the UI and dynamic events
 const cart = ref(0);
-const addToCart = () => (cart.value += 1);
+const addToCart = () => {
+  cart.value += 1;
+  inventory.value -= 1;
+};
 const updateImage = (variantImage) => {
   image.value = variantImage;
 };
@@ -47,6 +51,7 @@ const removeItemFromCart = () => {
   }
 
   cart.value -= 1;
+  inventory.value += 1;
 };
 </script>
 
@@ -87,6 +92,8 @@ const removeItemFromCart = () => {
           v-for="variant in variants"
           :key="variant.id"
           @mouseover="updateImage(variant.image)"
+          class="color-circle"
+          :style="{ backgroundColor: variant.color }"
         >
           {{ variant.color }}
         </div>
@@ -98,7 +105,14 @@ const removeItemFromCart = () => {
 
         <div>
           <!-- Fifth Lesson: interaction -->
-          <button class="button" v-on:click="addToCart">Add to Cart</button>
+          <button
+            class="button"
+            :class="{ disabledButton: !inStock }"
+            v-on:click="addToCart"
+            :disabled="!inStock"
+          >
+            Add to Cart
+          </button>
           <!-- `v-on` shorthand `@` -->
           <!-- <button class="button" @click="addToCart">Add to Cart</button> -->
 
