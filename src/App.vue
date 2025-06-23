@@ -18,6 +18,9 @@ const url = ref('https://vuejs.org/guide/quick-start');
 // const inStock = ref(true);
 // now in stock messaging is based on inventory count
 const inventory = ref(100);
+
+// Third Challenge - Create an `onSale` boolean `ref`. Use that to conditionally render a p tag that says: "On Sale" whenever `onSale` is `true`.
+const onSale = ref(false);
 </script>
 
 <template>
@@ -37,6 +40,9 @@ const inventory = ref(100);
         <p v-else>Out of Stock</p>
         <!-- Example of hiding element with `v-show` -->
         <!-- <p v-show="inStock">In Stock (show)</p> -->
+
+        <!-- Third Challenge: On Sale conditional render -->
+        <p v-if="onSale">On Sale</p>
 
         <p>{{ description }}</p>
 
