@@ -10,6 +10,8 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['add-to-cart', 'remove-from-cart']);
+
 const product = ref('Socks');
 const brand = ref('Vue Mastery');
 const description = ref(
@@ -69,8 +71,7 @@ const shipping = computed(() => {
 
 // Fifth Lesson: interactions in the UI and dynamic events
 const addToCart = () => {
-  // cart.value += 1;
-  // inventory.value -= 1;
+  emit('add-to-cart');
 };
 // const updateImage = (variantImage) => {
 //   image.value = variantImage;
@@ -81,12 +82,7 @@ const updateVariant = (variantIndex) => {
 
 // Fifth Challenge - Create a new button that decrements the value of cart
 const removeItemFromCart = () => {
-  if (cart.value === 0) {
-    return;
-  }
-
-  // cart.value -= 1;
-  // inventory.value += 1;
+  emit('remove-from-cart');
 };
 
 // Sixth Lesson: dynamic classes and styling `:style` `:class`
