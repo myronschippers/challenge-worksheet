@@ -10,6 +10,9 @@ const description = ref(
 // Attribute binding with `v-bind`
 // - without `ref` `v-bind` is not dynamic
 const image = ref(socksGreenImage);
+
+// Second Challenge - Add a `url` ref. Use `v-bind` to bind the url to an anchor tag's `href` attribute
+const url = ref('https://vuejs.org/guide/quick-start');
 </script>
 
 <template>
@@ -24,6 +27,9 @@ const image = ref(socksGreenImage);
       <div class="product-info">
         <h1>{{ product }}</h1>
         <p>{{ description }}</p>
+
+        <!-- Second Challenge -->
+        <a :href="url" target="_blank">Checkout Vue.js</a>
       </div>
     </div>
   </div>
