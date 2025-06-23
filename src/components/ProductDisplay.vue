@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
+import ReviewForm from '@/components/ReviewForm.vue';
 import socksGreenImage from '@/assets/images/socks_green.jpeg';
 import socksBlueImage from '@/assets/images/socks_blue.jpeg';
 
@@ -17,6 +18,7 @@ const brand = ref('Vue Mastery');
 const description = ref(
   'These are outstanding socks. Made from first rate alpaca fur.'
 );
+const reviews = ref([]);
 
 // computed - caches the value and only updates if the properties inside are updated
 const title = computed(() => {
@@ -69,6 +71,18 @@ const shipping = computed(() => {
   return 2.99;
 });
 
+const averageReviewRating = computed(() => {
+  if (reviews.value.length === 0) {
+    return '--';
+  }
+  const totalRating = reviews.value.reduce(
+    (ratingsAccumulator, currentReview) => {
+      return ratingsAccumulator + currentReview.rating;
+    }
+  );
+  return totalRating / reviews.length;
+});
+
 // Fifth Lesson: interactions in the UI and dynamic events
 const addToCart = () => {
   emit('add-to-cart', variants.value[selectedVariant.value].id);
@@ -85,9 +99,9 @@ const removeItemFromCart = () => {
   emit('remove-from-cart');
 };
 
-// Sixth Lesson: dynamic classes and styling `:style` `:class`
-
-// Sixth Challenge - Bind the `out-of-stock-image` class to the image whenever `inStock` is `false`
+const addReviews = (newReview) => {
+  reviews.value.push(newReview);
+};
 </script>
 
 <template>
@@ -155,5 +169,9 @@ const removeItemFromCart = () => {
         </div>
       </div>
     </div>
+
+    <ReviewForm @review-submitted="addReview"></ReviewForm>
+    <p>Total Reviews: {{ reviews.length }}</p>
+    <p>Average Rating: {{ averageReviewRating }}</p>
   </div>
 </template>
