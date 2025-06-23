@@ -39,6 +39,15 @@ const addToCart = () => (cart.value += 1);
 const updateImage = (variantImage) => {
   image.value = variantImage;
 };
+
+// Fifth Challenge - Create a new button that decrements the value of cart
+const removeItemFromCart = () => {
+  if (cart.value === 0) {
+    return;
+  }
+
+  cart.value -= 1;
+};
 </script>
 
 <template>
@@ -87,10 +96,17 @@ const updateImage = (variantImage) => {
           <li v-for="size in sizes">{{ size }}</li>
         </ul>
 
-        <!-- Fifth Lesson: interaction -->
-        <button class="button" v-on:click="addToCart">Add to Cart</button>
-        <!-- `v-on` shorthand `@` -->
-        <!-- <button class="button" @click="addToCart">Add to Cart</button> -->
+        <div>
+          <!-- Fifth Lesson: interaction -->
+          <button class="button" v-on:click="addToCart">Add to Cart</button>
+          <!-- `v-on` shorthand `@` -->
+          <!-- <button class="button" @click="addToCart">Add to Cart</button> -->
+
+          <!-- Fifth Challenge -->
+          <button class="button button_fluid" @click="removeItemFromCart">
+            Remove from Cart
+          </button>
+        </div>
       </div>
     </div>
   </div>

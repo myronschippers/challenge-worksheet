@@ -21,6 +21,10 @@ body {
   cursor: pointer;
 }
 
+.button_fluid {
+  width: auto;
+}
+
 .cart {
   margin: 25px 100px;
   float: right;
@@ -39,7 +43,6 @@ body {
   border: 2px solid #d8d8d8;
   border-radius: 50%;
 }
-
 
 .disabledButton {
   background-color: #d8d8d8;
@@ -89,7 +92,7 @@ li {
 }
 
 .out-of-stock-img {
-  opacity:0.5
+  opacity: 0.5;
 }
 
 p {
