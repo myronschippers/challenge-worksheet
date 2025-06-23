@@ -10,6 +10,10 @@ const review = reactive({
 });
 
 const onSubmit = () => {
+  if (review.name === '' || review.content === '' || review.rating === null) {
+    alert('Review is incomplete. Please fill out every field.');
+    return;
+  }
   const productReview = {
     name: review.name,
     content: review.content,
