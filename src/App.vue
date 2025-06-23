@@ -94,9 +94,7 @@ const removeItemFromCart = () => {
           @mouseover="updateImage(variant.image)"
           class="color-circle"
           :style="{ backgroundColor: variant.color }"
-        >
-          {{ variant.color }}
-        </div>
+        ></div>
 
         <!-- Fourth Challenge: Lists with `v-for` -->
         <ul>
