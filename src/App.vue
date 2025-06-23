@@ -28,6 +28,9 @@ const variants = ref([
   { id: 2234, color: 'green' },
   { id: 2235, color: 'blue' },
 ]);
+
+// Fourth Challenge: Add an array of `sizes` as a `ref`. Use the `v-for` to display them in a list
+const sizes = ref(['sm', 'md', 'lg', 'xl']);
 </script>
 
 <template>
@@ -63,6 +66,11 @@ const variants = ref([
         <div v-for="variant in variants" :key="variant.id">
           {{ variant.color }}
         </div>
+
+        <!-- Fourth Challenge: Lists with `v-for` -->
+        <ul>
+          <li v-for="size in sizes">{{ size }}</li>
+        </ul>
       </div>
     </div>
   </div>
