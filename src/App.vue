@@ -29,12 +29,18 @@ const variants = ref([
   { id: 2235, color: 'blue' },
 ]);
 
-// Fourth Challenge: Add an array of `sizes` as a `ref`. Use the `v-for` to display them in a list
+// Fourth Challenge - Add an array of `sizes` as a `ref`. Use the `v-for` to display them in a list
 const sizes = ref(['sm', 'md', 'lg', 'xl']);
+
+// Fifth Lesson: interactions in the UI and dynamic events
+const cart = ref(0);
 </script>
 
 <template>
   <div class="nav-bar"></div>
+  <!-- Fifth Lesson: dynamic events -->
+  <div class="cart">Cart({{ cart }})</div>
+
   <div class="product-display">
     <div class="product-container">
       <div class="product-image">
@@ -71,6 +77,9 @@ const sizes = ref(['sm', 'md', 'lg', 'xl']);
         <ul>
           <li v-for="size in sizes">{{ size }}</li>
         </ul>
+
+        <!-- Fifth Lesson: interaction -->
+        <button class="button">Add to Cart</button>
       </div>
     </div>
   </div>
