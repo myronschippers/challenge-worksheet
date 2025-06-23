@@ -71,7 +71,7 @@ const shipping = computed(() => {
 
 // Fifth Lesson: interactions in the UI and dynamic events
 const addToCart = () => {
-  emit('add-to-cart');
+  emit('add-to-cart', variants.value[selectedVariant.value].id);
 };
 // const updateImage = (variantImage) => {
 //   image.value = variantImage;

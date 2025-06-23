@@ -2,28 +2,25 @@
 import { ref } from 'vue';
 import ProductDisplay from '@/components/ProductDisplay.vue';
 
-const cart = ref(0);
+const cart = ref([]);
 const premium = ref(false);
 
-const addToCart = () => {
-  cart.value += 1;
+const updateCart = (id) => {
+  cart.value.push(id);
 };
 
 const removeFromCart = () => {
-  if (cart.value === 0) {
-    return;
-  }
-  cart.value -= 1;
+  cart.value.pop();
 };
 </script>
 
 <template>
   <div class="nav-bar"></div>
-  <div class="cart">Cart({{ cart }})</div>
+  <div class="cart">Cart({{ cart.length }})</div>
 
   <ProductDisplay
     :premium="premium"
-    @add-to-cart="addToCart"
+    @add-to-cart="updateCart"
     @remove-from-cart="removeFromCart"
   ></ProductDisplay>
 </template>
