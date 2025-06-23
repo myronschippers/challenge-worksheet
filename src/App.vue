@@ -13,6 +13,11 @@ const image = ref(socksGreenImage);
 
 // Second Challenge - Add a `url` ref. Use `v-bind` to bind the url to an anchor tag's `href` attribute
 const url = ref('https://vuejs.org/guide/quick-start');
+
+// Conditional Rendering
+// const inStock = ref(true);
+// now in stock messaging is based on inventory count
+const inventory = ref(100);
 </script>
 
 <template>
@@ -26,6 +31,13 @@ const url = ref('https://vuejs.org/guide/quick-start');
       </div>
       <div class="product-info">
         <h1>{{ product }}</h1>
+
+        <p v-if="inventory > 10">In Stock</p>
+        <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
+        <p v-else>Out of Stock</p>
+        <!-- Example of hiding element with `v-show` -->
+        <!-- <p v-show="inStock">In Stock (show)</p> -->
+
         <p>{{ description }}</p>
 
         <!-- Second Challenge -->
