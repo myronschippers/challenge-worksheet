@@ -171,7 +171,7 @@ const addReviews = (newReview) => {
       </div>
     </div>
 
-    <ReviewsList :reviews="reviews"></ReviewsList>
+    <ReviewsList v-if="reviews.length > 0" :reviews="reviews"></ReviewsList>
     <ReviewForm @review-submitted="addReview"></ReviewForm>
   </div>
 </template>
