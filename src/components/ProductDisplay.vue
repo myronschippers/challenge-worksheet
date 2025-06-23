@@ -28,32 +28,20 @@ const title = computed(() => {
 
 // Attribute binding with `v-bind`
 // - without `ref` `v-bind` is not dynamic
-// const image = ref(socksGreenImage);
 const selectedVariant = ref(0);
 
-// Second Challenge - Add a `url` ref. Use `v-bind` to bind the url to an anchor tag's `href` attribute
 const url = ref('https://vuejs.org/guide/quick-start');
 
-// Conditional Rendering
-// now in stock messaging is based on inventory count
-// const inventory = ref(100);
-// changing inStock boolean to be based on the inventory count
-// const inStock = computed(() => inventory.value > 0);
-
-// Third Challenge - Create an `onSale` boolean `ref`. Use that to conditionally render a p tag that says: "On Sale" whenever `onSale` is `true`.
 const onSale = ref(false);
 
-// Fourth Lesson: displaying lists with `v-for`
 const details = ref(['50% cotton', '30% wool', '20% polyester']);
 const variants = ref([
   { id: 2234, color: 'green', image: socksGreenImage, quantity: 50 },
   { id: 2235, color: 'blue', image: socksBlueImage, quantity: 0 },
 ]);
 
-// Fourth Challenge - Add an array of `sizes` as a `ref`. Use the `v-for` to display them in a list
 const sizes = ref(['sm', 'md', 'lg', 'xl']);
 
-// Seventh Lesson: `computed` values
 const image = computed(() => {
   return variants.value[selectedVariant.value].image;
 });
@@ -84,18 +72,14 @@ const averageReviewRating = computed(() => {
   return totalRating / reviews.length;
 });
 
-// Fifth Lesson: interactions in the UI and dynamic events
 const addToCart = () => {
   emit('add-to-cart', variants.value[selectedVariant.value].id);
 };
-// const updateImage = (variantImage) => {
-//   image.value = variantImage;
-// };
+
 const updateVariant = (variantIndex) => {
   selectedVariant.value = variantIndex;
 };
 
-// Fifth Challenge - Create a new button that decrements the value of cart
 const removeItemFromCart = () => {
   emit('remove-from-cart');
 };
@@ -125,15 +109,12 @@ const addReview = (newReview) => {
         <!-- <p v-show="inStock">In Stock (show)</p> -->
         <p>Shipping: {{ shipping }}</p>
 
-        <!-- Third Challenge: On Sale conditional render -->
         <p v-if="onSale">On Sale</p>
 
         <p>{{ description }}</p>
 
-        <!-- Second Challenge -->
         <a :href="url" target="_blank">Checkout Vue.js</a>
 
-        <!-- Fourth Lesson: Lists with `v-for` -->
         <ul>
           <li v-for="detail in details">{{ detail }}</li>
         </ul>
@@ -145,13 +126,11 @@ const addReview = (newReview) => {
           :style="{ backgroundColor: variant.color }"
         ></div>
 
-        <!-- Fourth Challenge: Lists with `v-for` -->
         <ul>
           <li v-for="size in sizes">{{ size }}</li>
         </ul>
 
         <div>
-          <!-- Fifth Lesson: interaction -->
           <button
             class="button"
             :class="{ disabledButton: !inStock }"
@@ -163,7 +142,6 @@ const addReview = (newReview) => {
           <!-- `v-on` shorthand `@` -->
           <!-- <button class="button" @click="addToCart">Add to Cart</button> -->
 
-          <!-- Fifth Challenge -->
           <button class="button button_fluid" @click="removeItemFromCart">
             Remove from Cart
           </button>
