@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import ReviewForm from '@/components/ReviewForm.vue';
+import ReviewsList from '@/components/ReviewsList.vue';
 import socksGreenImage from '@/assets/images/socks_green.jpeg';
 import socksBlueImage from '@/assets/images/socks_blue.jpeg';
 
@@ -170,8 +171,7 @@ const addReviews = (newReview) => {
       </div>
     </div>
 
+    <ReviewsList :reviews="reviews"></ReviewsList>
     <ReviewForm @review-submitted="addReview"></ReviewForm>
-    <p>Total Reviews: {{ reviews.length }}</p>
-    <p>Average Rating: {{ averageReviewRating }}</p>
   </div>
 </template>
